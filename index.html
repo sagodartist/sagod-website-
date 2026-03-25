@@ -10,25 +10,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <canvas id="background-canvas"></canvas>
-    
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1>SAGOD</h1>
-        </header>
+    <!-- Moving Letters Background Header -->
+    <header class="hero-header">
+        <canvas id="background-canvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-logo">SAGOD</h1>
+            <div class="hero-tagline">
+                <span class="tagline-item">sound</span>
+                <span class="tagline-item">vision</span>
+                <span class="tagline-item">energy</span>
+            </div>
+            <button class="listen-now-btn">LISTEN NOW</button>
+        </div>
+    </header>
 
-        <!-- Spotify Embed -->
-        <section class="spotify-section">
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#music" class="nav-link">music</a>
+            <a href="#video" class="nav-link">video</a>
+            <a href="#shows" class="nav-link">shows</a>
+            <a href="#gallery" class="nav-link">gallery</a>
+            <a href="#contact" class="nav-link">contact</a>
+        </div>
+    </nav>
+
+    <!-- Music Section -->
+    <section id="music" class="section">
+        <div class="container">
+            <h2 class="section-title">music.</h2>
             <div class="spotify-embed">
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/7jqhCTeAoo0Wfk9KCpIqSi?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
-        </section>
-
-        <!-- Music Section -->
-        <section class="section">
-            <h2 class="section-title">music.</h2>
-            <div class="links">
+            <div class="music-links">
                 <a href="https://open.spotify.com/artist/7jqhCTeAoo0Wfk9KCpIqSi" target="_blank" class="link">spotify</a>
                 <a href="https://music.apple.com/ca/artist/sagod/1617142947" target="_blank" class="link">apple music</a>
                 <a href="https://soundcloud.com/alem-vassell-704229287" target="_blank" class="link">soundcloud</a>
@@ -36,60 +50,135 @@
                 <a href="https://music.amazon.com/artists/B09RQTGFFN/sagod?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_bpFBXc38VMK5lWmb3MIUebGil" target="_blank" class="link">amazon music</a>
                 <a href="https://tidal.com/artist/30508849" target="_blank" class="link">tidal</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Merch Section -->
-        <section class="section">
-            <h2 class="section-title">merch.</h2>
-            <div class="links">
-                <a href="#clothing" class="link">clothing</a>
-                <a href="#vinyl" class="link">vinyl</a>
-                <a href="#accessories" class="link">accessories</a>
-            </div>
-        </section>
-
-        <!-- Live Shows Section -->
-        <section class="section">
-            <h2 class="section-title">LIVE !</h2>
-            <div class="shows">
-                <div class="show">
-                    <div class="show-date">15 MAR 2024</div>
-                    <div class="show-venue">the Troubadour</div>
-                    <div class="show-city">Los Angeles</div>
-                    <a href="https://ticketmaster.com" target="_blank" class="show-link">tickets</a>
+    <!-- Video Section -->
+    <section id="video" class="section">
+        <div class="container">
+            <h2 class="section-title">video.</h2>
+            <div class="video-grid">
+                <div class="video-item">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/VmJOeGPKaTs" title="SAGOD Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="show">
-                    <div class="show-date">18 MAR 2024</div>
-                    <div class="show-venue">the Fillmore</div>
-                    <div class="show-city">San Francisco</div>
-                    <a href="https://ticketmaster.com" target="_blank" class="show-link">tickets</a>
-                </div>
-                <div class="show">
-                    <div class="show-date">22 MAR 2024</div>
-                    <div class="show-venue">the Bowery Ballroom</div>
-                    <div class="show-city">New York</div>
-                    <a href="https://ticketmaster.com" target="_blank" class="show-link">tickets</a>
-                </div>
-                <div class="show">
-                    <div class="show-date">25 MAR 2024</div>
-                    <div class="show-venue">the Metro</div>
-                    <div class="show-city">Chicago</div>
-                    <a href="https://ticketmaster.com" target="_blank" class="show-link">tickets</a>
+                <div class="video-item">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/MxVxJYYmx6E" title="SAGOD Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Social Section -->
-        <section class="section">
-            <h2 class="section-title">connect.</h2>
-            <div class="links">
-                <a href="https://www.instagram.com/sagodmusic/" target="_blank" class="link">instagram</a>
-                <a href="https://x.com/BuisnessSagod" target="_blank" class="link">twitter</a>
-                <a href="https://www.tiktok.com/@sagodmusic" target="_blank" class="link">tiktok</a>
-                <a href="mailto:booking@sagod.com" class="link">booking</a>
+    <!-- Shows Section -->
+    <section id="shows" class="section">
+        <div class="container">
+            <h2 class="section-title">shows.</h2>
+            <div class="shows-grid">
+                <div class="show-card featured">
+                    <div class="show-header">
+                        <div class="show-date">
+                            <div class="date-day">09</div>
+                            <div class="date-month">APR</div>
+                        </div>
+                        <div class="show-info">
+                            <h3 class="show-title">Marlon Asher w/ Jah Mikey One</h3>
+                            <p class="show-venue">Bayside Bowl • Portland, ME</p>
+                            <p class="show-time">8:00 PM - 11:30 PM • All Ages</p>
+                        </div>
+                    </div>
+                    <div class="show-details">
+                        <p class="show-description">Presented by Tubular Times & Zero Gravity. A powerful night of reggae and sound system culture with deep bass, sound system energy, and a packed dance floor.</p>
+                        <div class="show-tags">
+                            <span class="tag">Reggae</span>
+                            <span class="tag">Sound System</span>
+                            <span class="tag">All Ages</span>
+                        </div>
+                    </div>
+                    <div class="show-actions">
+                        <a href="https://www.eventbrite.com/e/marlon-asher-w-jah-mikey-one-live-at-bayside-bowl-all-ages-tickets-1984763726735" target="_blank" class="btn btn-primary">Get Tickets</a>
+                        <a href="https://www.baysidebowl.com" target="_blank" class="btn btn-secondary">Venue Info</a>
+                    </div>
+                </div>
             </div>
-        </section>
-    </div>
+            <div class="shows-more">
+                <p class="shows-cta">More shows coming soon. Follow us on social media for updates!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title">gallery.</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="sagod1.jpg" alt="SAGOD Photo 1" onerror="tryImageFallback(this, 'sagod-1.jpg', 'image1.jpg')">
+                    <div style="width:100%; height:400px; background:linear-gradient(45deg, #00ff00, #000); display:none; align-items:center; justify-content:center; color:#fff; font-size:24px; font-weight:bold; text-align:center;">SAGOD<br>PHOTO 1</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="sagod2.jpg" alt="SAGOD Photo 2" onerror="tryImageFallback(this, 'sagod-2.jpg', 'image2.jpg')">
+                    <div style="width:100%; height:400px; background:linear-gradient(45deg, #ffff00, #000); display:none; align-items:center; justify-content:center; color:#000; font-size:24px; font-weight:bold; text-align:center;">SAGOD<br>PHOTO 2</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="sagod3.jpg" alt="SAGOD Photo 3" onerror="tryImageFallback(this, 'sagod-3.jpg', 'image3.jpg')">
+                    <div style="width:100%; height:400px; background:linear-gradient(45deg, #00ff00, #000); display:none; align-items:center; justify-content:center; color:#fff; font-size:24px; font-weight:bold; text-align:center;">SAGOD<br>PHOTO 3</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="sagod4.jpg" alt="SAGOD Photo 4" onerror="tryImageFallback(this, 'sagod-4.jpg', 'image4.jpg')">
+                    <div style="width:100%; height:400px; background:linear-gradient(45deg, #ffff00, #000); display:none; align-items:center; justify-content:center; color:#000; font-size:24px; font-weight:bold; text-align:center;">SAGOD<br>PHOTO 4</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="sagod5.jpg" alt="SAGOD Photo 5" onerror="tryImageFallback(this, 'sagod-5.jpg', 'image5.jpg')">
+                    <div style="width:100%; height:400px; background:linear-gradient(45deg, #00ff00, #000); display:none; align-items:center; justify-content:center; color:#fff; font-size:24px; font-weight:bold; text-align:center;">SAGOD<br>PHOTO 5</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="sagod6.jpg" alt="SAGOD Photo 6" onerror="tryImageFallback(this, 'sagod-6.jpg', 'image6.jpg')">
+                    <div style="width:100%; height:400px; background:linear-gradient(45deg, #ffff00, #000); display:none; align-items:center; justify-content:center; color:#000; font-size:24px; font-weight:bold; text-align:center;">SAGOD<br>PHOTO 6</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">contact.</h2>
+            <div class="contact-info">
+                <a href="mailto:booking@sagod.com" class="contact-link">booking@sagod.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Social Icons -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-icons">
+                <a href="https://www.instagram.com/sagodmusic/" target="_blank" class="social-icon instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998z"/>
+                        <path d="M18.406 5.594a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/BuisnessSagod" target="_blank" class="social-icon twitter">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a href="https://open.spotify.com/artist/7jqhCTeAoo0Wfk9KCpIqSi" target="_blank" class="social-icon spotify">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="#music" class="footer-link">music</a>
+                <a href="#video" class="footer-link">video</a>
+                <a href="#shows" class="footer-link">shows</a>
+                <a href="#gallery" class="footer-link">gallery</a>
+                <a href="#contact" class="footer-link">contact</a>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
