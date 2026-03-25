@@ -3,13 +3,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('background-canvas');
     const ctx = canvas.getContext('2d');
     
-    // Set canvas size
+    // Mobile performance detection
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isLowPerformance = isMobile && navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+    
+    // Set canvas size with mobile optimizations
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        
+        // Reduce particle count on mobile for better performance
+        if (isMobile) {
+            particles = createParticles();
+        }
     }
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
+    
+    // Optimize canvas for mobile
+    if (isMobile) {
+        canvas.style.touchAction = 'none';
+        ctx.imageSmoothingEnabled = false; // Better performance on mobile
+    }
     
     // Letter particles
     class LetterParticle {
@@ -154,19 +169,46 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseY = e.clientY;
     });
 
-    // Touch support for mobile
+    // Touch support for mobile with enhanced interactions
     canvas.addEventListener('touchmove', (e) => {
         if (e.touches.length > 0) {
+            e.preventDefault(); // Prevent scrolling when interacting with canvas
             mouseX = e.touches[0].clientX;
             mouseY = e.touches[0].clientY;
         }
-    });
+    }, { passive: false });
 
     canvas.addEventListener('touchstart', (e) => {
         if (e.touches.length > 0) {
+            e.preventDefault(); // prevent scrolling when interacting with canvas
             mouseX = e.touches[0].clientX;
             mouseY = e.touches[0].clientY;
+            
+            // Add touch feedback - create small explosion at touch point
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+            
+            particles.forEach(particle => {
+                const dx = particle.x - touchX;
+                const dy = particle.y - touchY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                    const force = (1 - distance / 150) * 80;
+                    const angle = Math.atan2(dy, dx);
+                    particle.x += Math.cos(angle) * force;
+                    particle.y += Math.sin(angle) * force;
+                    particle.rotationSpeed += 0.05;
+                    particle.color = particle.getRandomColor();
+                    particle.interactionCount += 3;
+                }
+            });
         }
+    }, { passive: false });
+
+    // Touch end event
+    canvas.addEventListener('touchend', (e) => {
+        // Reset any touch states if needed
     });
 
     // Click explosion effect
