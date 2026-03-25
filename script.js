@@ -3,27 +3,53 @@ document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('background-canvas');
     const ctx = canvas.getContext('2d');
     
-    // Mobile performance detection
+    // Better iOS detection
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isLowPerformance = isMobile && navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
     
-    // Set canvas size with mobile optimizations
+    // Set canvas size with iOS optimizations
     function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
         
-        // Reduce particle count on mobile for better performance
-        if (isMobile) {
+        // Handle iOS retina displays
+        if (isIOS) {
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            canvas.style.width = rect.width + 'px';
+            canvas.style.height = rect.height + 'px';
+            ctx.scale(dpr, dpr);
+        } else {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        // Recreate particles on resize
+        if (particles) {
             particles = createParticles();
         }
     }
+    
+    // Initialize canvas
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Optimize canvas for mobile
-    if (isMobile) {
+    // iOS-specific canvas optimizations
+    if (isIOS) {
         canvas.style.touchAction = 'none';
-        ctx.imageSmoothingEnabled = false; // Better performance on mobile
+        canvas.style.webkitUserSelect = 'none';
+        canvas.style.webkitTapHighlightColor = 'transparent';
+        
+        // Prevent iOS zoom on double tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     }
     
     // Letter particles
@@ -137,16 +163,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Create particles
+    // Create particles with iOS optimization
     function createParticles() {
         const letters = ['S', 'A', 'G', 'O', 'D'];
-        const particleCount = window.innerWidth < 768 ? 150 : (window.innerWidth < 480 ? 100 : 250);
+        
+        // Reduce particle count for iOS performance
+        let particleCount;
+        if (isIOS) {
+            particleCount = window.innerWidth < 768 ? 80 : (window.innerWidth < 480 ? 60 : 120);
+        } else {
+            particleCount = window.innerWidth < 768 ? 150 : (window.innerWidth < 480 ? 100 : 250);
+        }
         
         const particles = [];
+        const canvasWidth = isIOS ? canvas.width / (window.devicePixelRatio || 1) : canvas.width;
+        const canvasHeight = isIOS ? canvas.height / (window.devicePixelRatio || 1) : canvas.height;
+        
         for (let i = 0; i < particleCount; i++) {
             const letter = letters[Math.floor(Math.random() * letters.length)];
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
+            const x = Math.random() * canvasWidth;
+            const y = Math.random() * canvasHeight;
             particles.push(new LetterParticle(x, y, letter));
         }
         return particles;
@@ -169,24 +205,18 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseY = e.clientY;
     });
 
-    // Touch support for mobile with enhanced interactions
-    canvas.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) {
-            e.preventDefault(); // Prevent scrolling when interacting with canvas
-            mouseX = e.touches[0].clientX;
-            mouseY = e.touches[0].clientY;
-        }
-    }, { passive: false });
-
+    // iOS-compatible touch support
     canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
         if (e.touches.length > 0) {
-            e.preventDefault(); // prevent scrolling when interacting with canvas
-            mouseX = e.touches[0].clientX;
-            mouseY = e.touches[0].clientY;
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            mouseX = touch.clientX - rect.left;
+            mouseY = touch.clientY - rect.top;
             
-            // Add touch feedback - create small explosion at touch point
-            const touchX = e.touches[0].clientX;
-            const touchY = e.touches[0].clientY;
+            // Add touch feedback for iOS
+            const touchX = mouseX;
+            const touchY = mouseY;
             
             particles.forEach(particle => {
                 const dx = particle.x - touchX;
@@ -206,10 +236,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, { passive: false });
 
-    // Touch end event
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            mouseX = touch.clientX - rect.left;
+            mouseY = touch.clientY - rect.top;
+        }
+    }, { passive: false });
+
     canvas.addEventListener('touchend', (e) => {
-        // Reset any touch states if needed
-    });
+        e.preventDefault();
+    }, { passive: false });
 
     // Click explosion effect
     canvas.addEventListener('click', (e) => {

@@ -1203,3 +1203,103 @@ body {
         -moz-osx-font-smoothing: grayscale;
     }
 }
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    /* iOS Safari specific styles */
+    .hero-header {
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+    }
+    
+    #background-canvas {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        perspective: 1000;
+    }
+    
+    .show-card,
+    .gallery-item,
+    .btn {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    .nav-link {
+        -webkit-tap-highlight-color: rgba(0, 255, 0, 0.3);
+    }
+    
+    /* Fix iOS viewport height issues */
+    .hero-header {
+        height: -webkit-fill-available;
+        height: 100vh;
+        min-height: 100vh;
+    }
+    
+    /* Fix iOS scrolling issues */
+    body {
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+    }
+    
+    /* Fix iOS input zoom */
+    input, textarea, select {
+        font-size: 16px;
+    }
+}
+
+/* iPhone specific fixes */
+@media only screen 
+    and (device-width: 375px) 
+    and (device-height: 667px) 
+    and (-webkit-device-pixel-ratio: 2) { 
+    /* iPhone 6/7/8 */
+    .hero-logo {
+        font-size: 3.5rem;
+    }
+}
+
+@media only screen 
+    and (device-width: 375px) 
+    and (device-height: 812px) 
+    and (-webkit-device-pixel-ratio: 3) { 
+    /* iPhone X/11/12/13 */
+    .hero-logo {
+        font-size: 3.5rem;
+    }
+    
+    .hero-header {
+        height: 100vh;
+        height: -webkit-fill-available;
+    }
+}
+
+@media only screen 
+    and (device-width: 414px) 
+    and (device-height: 896px) 
+    and (-webkit-device-pixel-ratio: 3) { 
+    /* iPhone XR/11 */
+    .hero-logo {
+        font-size: 3.8rem;
+    }
+}
+
+/* iOS Safari performance optimizations */
+@supports (-webkit-appearance: none) {
+    .show-card {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    .gallery-item img {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
